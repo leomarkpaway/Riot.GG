@@ -3,6 +3,7 @@ package com.leomarkpaway.riotgg
 import android.app.Application
 import com.leomarkpaway.riotgg.di.networkModule
 import com.leomarkpaway.riotgg.di.repositoryModule
+import com.leomarkpaway.riotgg.di.useCaseModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -13,7 +14,7 @@ class RiotGGApp : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@RiotGGApp)
-            modules(networkModule, repositoryModule)
+            modules(networkModule, repositoryModule, useCaseModule)
         }
         setupTimberLogging()
     }
