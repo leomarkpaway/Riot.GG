@@ -15,4 +15,9 @@ class RiotApiService(private val httpClient: HttpClient) {
         return httpClient.getApiResponse("cdn/15.4.1/data/en_US/champion/$name.json")
     }
 
+    companion object {
+        const val BASE_URL = "https://ddragon.leagueoflegends.com/cdn"
+        const val CHAMPION_IMAGE_CARD_URL = "$BASE_URL/img/champion/loading/"
+    }
+
 }
