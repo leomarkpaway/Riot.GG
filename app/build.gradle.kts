@@ -82,6 +82,7 @@ dependencies {
     // Koin
     implementation(libs.io.insert.koin)
     implementation(libs.io.insert.koin.android)
+    implementation(libs.io.insert.koin.compose)
 
     // Orbit MVI
     implementation(libs.orbit.core)
