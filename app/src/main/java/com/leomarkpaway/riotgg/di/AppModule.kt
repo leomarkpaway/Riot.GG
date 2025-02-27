@@ -12,6 +12,7 @@ import com.leomarkpaway.riotgg.presentation.champion_list.ChampionListViewModel
 import com.leomarkpaway.riotgg.common.util.navigator.DefaultNavigator
 import com.leomarkpaway.riotgg.common.util.navigator.Destination
 import com.leomarkpaway.riotgg.common.util.navigator.Navigator
+import com.leomarkpaway.riotgg.domain.usecase.FilterChampionListUseCase
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -51,6 +52,7 @@ val appModule = module {
     // UseCase
     factory<FetchChampionListUsaCase> { FetchChampionListUsaCase(repository = get()) }
     factory<FetchChampionDetailsUseCase> { FetchChampionDetailsUseCase(repository = get()) }
+    factory<FilterChampionListUseCase> { FilterChampionListUseCase() }
 
     // ViewModel
     viewModel<ChampionListViewModel> {
