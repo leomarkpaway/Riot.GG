@@ -7,12 +7,11 @@ import com.leomarkpaway.riotgg.data.repository.RepositoryImpl
 import com.leomarkpaway.riotgg.domain.repository.Repository
 import com.leomarkpaway.riotgg.domain.usecase.FetchChampionDetailsUseCase
 import com.leomarkpaway.riotgg.domain.usecase.FetchChampionListUsaCase
-import com.leomarkpaway.riotgg.domain.usecase.FilterChampionListUseCase
 import com.leomarkpaway.riotgg.presentation.champion_details.ChampionDetailsViewModel
 import com.leomarkpaway.riotgg.presentation.champion_list.ChampionListViewModel
-import com.leomarkpaway.riotgg.common.extension.navigation.DefaultNavigator
-import com.leomarkpaway.riotgg.common.extension.navigation.Destination
-import com.leomarkpaway.riotgg.common.extension.navigation.Navigator
+import com.leomarkpaway.riotgg.common.util.navigator.DefaultNavigator
+import com.leomarkpaway.riotgg.common.util.navigator.Destination
+import com.leomarkpaway.riotgg.common.util.navigator.Navigator
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -45,6 +44,9 @@ val appModule = module {
     // Repository
     single<RiotApiService> { RiotApiService(httpClient = get()) }
     single<Repository> { RepositoryImpl(riotApiService = get()) }
+
+    // Navigator
+    single<Navigator> { DefaultNavigator(startDestination = Destination.Home) }
 
     // UseCase
     factory<FetchChampionListUsaCase> { FetchChampionListUsaCase(repository = get()) }
