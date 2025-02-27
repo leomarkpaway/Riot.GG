@@ -18,38 +18,18 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.leomarkpaway.riotgg.common.extension.getComposeViewModel
-import com.leomarkpaway.riotgg.domain.entity.model.ChampionModel
 import com.leomarkpaway.riotgg.presentation.champion_list.composable.ChampionCard
-import org.orbitmvi.orbit.compose.collectAsState
-import org.orbitmvi.orbit.compose.collectSideEffect
-import timber.log.Timber
 
 @Composable
-fun ChampionListScreen() {
-    var championList = remember { mutableStateListOf<ChampionModel>() }
-    val viewModel = getComposeViewModel<ChampionListViewModel>()
-    val state = viewModel.collectAsState()
-
-    viewModel.collectSideEffect {
-        when(it) {
-            is ChampionListSideEffect.OnError -> {
-                Timber.e("error: ${it.message}")
-            }
-            is ChampionListSideEffect.OnSearch -> {
-                championList = it.champions.toMutableStateList()
-                Timber.d("SearchResult: $championList")
-            }
-        }
-    }
-
+fun ChampionListScreen(
+    state: ChampionListState,
+    onSearchTextChange: (String) -> Unit,
+    onClickItem: (String) -> Unit
+) {
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier
@@ -58,8 +38,8 @@ fun ChampionListScreen() {
                 .padding(horizontal = 20.dp)
         ) {
             OutlinedTextField(
-                value = state.value.searchText,
-                onValueChange = viewModel::onSearchTextChange,
+                value = state.searchText,
+                onValueChange = onSearchTextChange,
                 placeholder = { Text(text = "Search for champs") },
                 leadingIcon = {
                     Icon(
@@ -72,19 +52,19 @@ fun ChampionListScreen() {
                     .fillMaxWidth()
                     .padding(vertical = 20.dp)
             )
-            if (state.value.isOnLoading) {
+            if (state.isOnLoading) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) { CircularProgressIndicator(modifier = Modifier.padding(24.dp), color = Color.Black) }
             } else {
                 LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                    items(championList.ifEmpty { state.value.champions } ) { champion ->
+                    items(state.filteredChampions.ifEmpty { state.champions } ) { champion ->
                         ChampionCard(
                             champion = champion,
                             modifier = Modifier
                                 .animateItem()
-                                .clickable { champion.name?.let(viewModel::onClickItem) }
+                                .clickable { champion.name?.let(onClickItem) }
                         )
                     }
                 }
