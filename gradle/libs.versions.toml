@@ -58,6 +58,7 @@ androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx",
 # Koin
 io-insert-koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 io-insert-koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+io-insert-koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 
 # Orbit MVI
 orbit-core = { module = "org.orbit-mvi:orbit-core", version.ref = "orbit_mvi" }

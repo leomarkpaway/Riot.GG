@@ -1,6 +1,7 @@
 package com.leomarkpaway.riotgg.di
 
 import com.leomarkpaway.riotgg.data.remote.RiotApiService
+import com.leomarkpaway.riotgg.data.remote.RiotApiService.Companion.BASE_URL
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -13,10 +14,9 @@ import org.koin.dsl.module
 
 val networkModule = module {
     single {
-        val baseUrl = "https://ddragon.leagueoflegends.com/cdn"
         HttpClient(OkHttp.create()) {
             defaultRequest {
-                url(baseUrl)
+                url(BASE_URL)
                 header(HttpHeaders.ContentType, "application/json")
             }
             install(ContentNegotiation) {

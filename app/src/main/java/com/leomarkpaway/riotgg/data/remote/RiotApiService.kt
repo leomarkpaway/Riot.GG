@@ -15,4 +15,14 @@ class RiotApiService(private val httpClient: HttpClient) {
         return httpClient.getApiResponse("cdn/15.4.1/data/en_US/champion/$name.json")
     }
 
+    companion object {
+        private const val VERSION = "15.4.1"
+        const val BASE_URL = "https://ddragon.leagueoflegends.com/cdn"
+        const val CHAMPION_IMAGE_CARD_URL = "$BASE_URL/img/champion/loading/"
+        const val CHAMPION_BACKGROUND_URL = "$BASE_URL/img/champion/splash/"
+        const val CHAMPION_SQUARE_URL = "$BASE_URL/${VERSION}/img/champion/"
+        const val CHAMPION_PASSIVE_URL = "$BASE_URL/${VERSION}/img/passive/"
+        const val CHAMPION_ABILITY_URL = "$BASE_URL/${VERSION}/img/spell/"
+    }
+
 }
