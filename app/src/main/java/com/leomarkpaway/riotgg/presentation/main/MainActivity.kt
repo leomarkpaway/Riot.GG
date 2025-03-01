@@ -1,4 +1,4 @@
-package com.leomarkpaway.riotgg
+package com.leomarkpaway.riotgg.presentation.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
