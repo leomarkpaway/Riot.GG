@@ -1,15 +1,15 @@
 package com.leomarkpaway.riotgg.presentation.main.component
 
-enum class MainDrawerState {
+enum class DrawerState {
     Opened,
     Closed
 }
 
-fun MainDrawerState.isOpened(): Boolean {
+fun DrawerState.isOpened(): Boolean {
     return this.name == "Opened"
 }
 
-fun MainDrawerState.opposite(): MainDrawerState {
-    return if (this == MainDrawerState.Opened) MainDrawerState.Closed
-    else MainDrawerState.Opened
+fun DrawerState.opposite(): DrawerState {
+    return if (this == DrawerState.Opened) DrawerState.Closed
+    else DrawerState.Opened
 }

@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun NavigationItemView(
+fun DrawerItemViewHolder(
     mainDrawerItem: DrawerItemModel,
     selected: Boolean,
     onClick: () -> Unit

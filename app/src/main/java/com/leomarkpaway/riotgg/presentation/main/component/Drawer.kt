@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.leomarkpaway.riotgg.R
 
 @Composable
-fun MainDrawer(
+fun Drawer(
     selectedMainDrawerItem: DrawerItemModel,
     onNavigationItemClick: (DrawerItemModel) -> Unit,
     onCloseClick: () -> Unit
@@ -54,8 +54,8 @@ fun MainDrawer(
             contentDescription = "Riot Logo"
         )
         Spacer(modifier = Modifier.height(40.dp))
-        DrawerItemModel.entries.toTypedArray().take(3).forEach { navigationItem ->
-            NavigationItemView(
+        DrawerItemModel.entries.toTypedArray().take(1).forEach { navigationItem ->
+            DrawerItemViewHolder(
                 mainDrawerItem = navigationItem,
                 selected = navigationItem == selectedMainDrawerItem,
                 onClick = {
@@ -66,7 +66,7 @@ fun MainDrawer(
         }
         Spacer(modifier = Modifier.weight(1f))
         DrawerItemModel.entries.toTypedArray().takeLast(1).forEach { navigationItem ->
-            NavigationItemView(
+            DrawerItemViewHolder(
                 mainDrawerItem = navigationItem,
                 selected = false,
                 onClick = {
