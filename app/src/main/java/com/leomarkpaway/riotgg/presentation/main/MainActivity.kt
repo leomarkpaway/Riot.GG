@@ -36,51 +36,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             RiotGGTheme {
-                val navController = rememberNavController()
-                val navigator = koinInject<Navigator>()
-
-                ObserveAsEvents(flow = navigator.navigationActions) { action ->
-                    when(action) {
-                        is NavigationAction.Navigate -> navController.navigate(
-                            action.destination
-                        ) {
-                            action.navOptions(this)
-                        }
-                        NavigationAction.NavigateUp -> navController.navigateUp()
-                    }
-                }
-                Box(modifier = Modifier.fillMaxSize()) {
-                    NavHost(
-                        navController = navController,
-                        startDestination = navigator.startDestination,
-                    ) {
-                        composable<Destination.Home> {
-                            val viewModel = koinViewModel<ChampionListViewModel>()
-                            val state = viewModel.collectAsState()
-
-                            viewModel.collectSideEffect {
-                                when(it) {
-                                    is ChampionListSideEffect.OnError -> {
-                                        Timber.e("error ${it.message}")
-                                    }
-                                }
-                            }
-
-                            ChampionListScreen(
-                                state = state.value,
-                                onSearchTextChange = viewModel::onSearchTextChange,
-                                onClickItem = viewModel::onClickItem
-                            )
-                        }
-                        composable<Destination.ChampionDetails> {
-                            val args = it.toRoute<Destination.ChampionDetails>()
-                            val viewModel = koinViewModel<ChampionDetailsViewModel>()
-                            viewModel.fetchChampionDetails(args.championName)
-                            val state = viewModel.collectAsState().value
-                            ChampionDetailsScreen(state = state)
-                        }
-                    }
-                }
+                MainScreen()
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.leomarkpaway.riotgg.presentation.main.component
+package com.leomarkpaway.riotgg.presentation.main.component.drawer
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -50,13 +50,13 @@ fun Drawer(
         Spacer(modifier = Modifier.height(24.dp))
         Image(
             modifier = Modifier.size(100.dp),
-            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            painter = painterResource(id = R.drawable.riot_logomark_red),
             contentDescription = "Riot Logo"
         )
         Spacer(modifier = Modifier.height(40.dp))
-        DrawerItemModel.entries.toTypedArray().take(1).forEach { navigationItem ->
+        DrawerItemModel.entries.toTypedArray().take(3).forEach { navigationItem ->
             DrawerItemViewHolder(
-                mainDrawerItem = navigationItem,
+                drawerItem = navigationItem,
                 selected = navigationItem == selectedMainDrawerItem,
                 onClick = {
                     onNavigationItemClick(navigationItem)
@@ -67,7 +67,7 @@ fun Drawer(
         Spacer(modifier = Modifier.weight(1f))
         DrawerItemModel.entries.toTypedArray().takeLast(1).forEach { navigationItem ->
             DrawerItemViewHolder(
-                mainDrawerItem = navigationItem,
+                drawerItem = navigationItem,
                 selected = false,
                 onClick = {
                     when (navigationItem) {

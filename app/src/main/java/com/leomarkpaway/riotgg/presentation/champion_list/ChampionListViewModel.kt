@@ -47,7 +47,7 @@ class ChampionListViewModel(
             navigator.navigate(
                 destination = Destination.ChampionDetails(championName),
                 navOptions = {
-                    popUpTo(Destination.Home) {
+                    popUpTo(Destination.LeagueOfLegends) {
                         inclusive = false
                     }
                 }

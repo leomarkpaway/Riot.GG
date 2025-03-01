@@ -1,4 +1,4 @@
-package com.leomarkpaway.riotgg.presentation.main.component
+package com.leomarkpaway.riotgg.presentation.main.component.drawer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -6,8 +6,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Search
+import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -24,7 +28,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun DrawerItemViewHolder(
-    mainDrawerItem: DrawerItemModel,
+    drawerItem: DrawerItemModel,
     selected: Boolean,
     onClick: () -> Unit
 ) {
@@ -41,15 +45,23 @@ fun DrawerItemViewHolder(
             .padding(horizontal = 12.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Icon(
-            painter = painterResource(id = mainDrawerItem.icon),
-            contentDescription = "Navigation Item Icon",
-            tint = if (selected) MaterialTheme.colorScheme.primary
-            else MaterialTheme.colorScheme.onSurface
-        )
+        if (drawerItem.icon == 0) {
+            Icon(
+                imageVector = Icons.Rounded.Settings,
+                contentDescription = "settings icon"
+            )
+        } else {
+            Icon(
+                painter = painterResource(id = drawerItem.icon ?: 0),
+                contentDescription = "Navigation Item Icon",
+                modifier = Modifier.size(24.dp),
+                tint = if (selected) MaterialTheme.colorScheme.primary
+                else MaterialTheme.colorScheme.onSurface
+            )
+        }
         Spacer(modifier = Modifier.width(12.dp))
         Text(
-            text = mainDrawerItem.title,
+            text = drawerItem.title,
             color = if (selected) MaterialTheme.colorScheme.primary
             else MaterialTheme.colorScheme.onSurface,
             fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
