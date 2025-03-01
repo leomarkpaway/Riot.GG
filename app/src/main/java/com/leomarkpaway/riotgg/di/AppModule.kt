@@ -13,6 +13,7 @@ import com.leomarkpaway.riotgg.common.util.navigator.DefaultNavigator
 import com.leomarkpaway.riotgg.common.util.navigator.Destination
 import com.leomarkpaway.riotgg.common.util.navigator.Navigator
 import com.leomarkpaway.riotgg.domain.usecase.FilterChampionListUseCase
+import com.leomarkpaway.riotgg.presentation.main.MainViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -47,7 +48,7 @@ val appModule = module {
     single<Repository> { RepositoryImpl(riotApiService = get()) }
 
     // Navigator
-    single<Navigator> { DefaultNavigator(startDestination = Destination.Home) }
+    single<Navigator> { DefaultNavigator(startDestination = Destination.LeagueOfLegends) }
 
     // UseCase
     factory<FetchChampionListUsaCase> { FetchChampionListUsaCase(repository = get()) }
@@ -67,4 +68,5 @@ val appModule = module {
             fetchChampionDetailsUseCase = get()
         )
     }
+    viewModel<MainViewModel> { MainViewModel(navigator = get()) }
 }

@@ -30,43 +30,40 @@ fun ChampionListScreen(
     onSearchTextChange: (String) -> Unit,
     onClickItem: (String) -> Unit
 ) {
-    Scaffold { innerPadding ->
-        Column(
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 20.dp)
+    ) {
+        OutlinedTextField(
+            value = state.searchText,
+            onValueChange = onSearchTextChange,
+            placeholder = { Text(text = "Search for champs") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Rounded.Search,
+                    contentDescription = null
+                )
+            },
+            shape = RoundedCornerShape(12.dp),
             modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxSize()
-                .padding(horizontal = 20.dp)
-        ) {
-            OutlinedTextField(
-                value = state.searchText,
-                onValueChange = onSearchTextChange,
-                placeholder = { Text(text = "Search for champs") },
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Rounded.Search,
-                        contentDescription = null
+                .fillMaxWidth()
+                .padding(bottom = 20.dp)
+        )
+        if (state.isOnLoading) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) { CircularProgressIndicator(modifier = Modifier.padding(24.dp), color = Color.Black) }
+        } else {
+            LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                items(state.filteredChampions.ifEmpty { state.champions }) { champion ->
+                    ChampionCard(
+                        champion = champion,
+                        modifier = Modifier
+                            .animateItem()
+                            .clickable { champion.name?.let(onClickItem) }
                     )
-                },
-                shape = RoundedCornerShape(12.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 20.dp)
-            )
-            if (state.isOnLoading) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) { CircularProgressIndicator(modifier = Modifier.padding(24.dp), color = Color.Black) }
-            } else {
-                LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                    items(state.filteredChampions.ifEmpty { state.champions } ) { champion ->
-                        ChampionCard(
-                            champion = champion,
-                            modifier = Modifier
-                                .animateItem()
-                                .clickable { champion.name?.let(onClickItem) }
-                        )
-                    }
                 }
             }
         }
