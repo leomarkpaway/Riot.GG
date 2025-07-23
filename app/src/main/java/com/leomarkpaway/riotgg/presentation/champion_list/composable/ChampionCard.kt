@@ -30,7 +30,7 @@ fun ChampionCard(
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         AsyncImage(
-            model = "$CHAMPION_IMAGE_CARD_URL${champion.name}_0.jpg",
+            model = "$CHAMPION_IMAGE_CARD_URL${champion.id}_0.jpg",
             contentDescription = null,
             contentScale = ContentScale.FillWidth,
             modifier = Modifier

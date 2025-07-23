@@ -25,7 +25,7 @@ fun ChampionDetailsScreen(state: ChampionDetailsState) {
             ) {
                 item {
                     AsyncImage(
-                        model = "$CHAMPION_BACKGROUND_URL${champion.name}_0.jpg",
+                        model = "$CHAMPION_BACKGROUND_URL${champion.id}_0.jpg",
                         contentDescription = null,
                         contentScale = ContentScale.FillWidth,
                         modifier = Modifier

@@ -62,7 +62,7 @@ fun ChampionListScreen(
                         champion = champion,
                         modifier = Modifier
                             .animateItem()
-                            .clickable { champion.name?.let(onClickItem) }
+                            .clickable { champion.id?.let(onClickItem) }
                     )
                 }
             }
