@@ -67,10 +67,7 @@ fun NavigationHost(padding: PaddingValues, navController: NavHostController, nav
             }
             composable<Destination.ChampionDetails> {
                 val args = it.toRoute<Destination.ChampionDetails>()
-                val viewModel = koinViewModel<ChampionDetailsViewModel>()
-                viewModel.fetchChampionDetails(args.championName)
-                val state = viewModel.collectAsState().value
-                ChampionDetailsScreen(state = state)
+                ChampionDetailsScreen(args.championName)
             }
             composable<Destination.TeamfightTactics> {
                 ComingSoonScreen()
