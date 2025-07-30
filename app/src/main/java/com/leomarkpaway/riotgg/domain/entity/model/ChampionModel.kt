@@ -24,5 +24,13 @@ data class ChampionModel(
     @SerialName("tags")
     val tags: List<String> = listOf(),
     @SerialName("title")
-    val title: String? = ""
+    val title: String? = "",
+    @SerialName("info")
+    var info: InfoModel? = InfoModel(),
+    @SerialName("stats")
+    var stats: Stats? = Stats(),
+    @SerialName("allytips")
+    var allyTips: ArrayList<String> = arrayListOf(),
+    @SerialName("enemytips")
+    var enemyTips: ArrayList<String> = arrayListOf(),
 )
