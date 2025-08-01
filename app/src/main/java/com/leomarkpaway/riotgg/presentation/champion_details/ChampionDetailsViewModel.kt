@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.leomarkpaway.riotgg.domain.entity.model.ChampionModel
 import com.leomarkpaway.riotgg.domain.usecase.FetchChampionDetailsUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
@@ -21,12 +22,25 @@ class ChampionDetailsViewModel(
             val championDetails = fetchChampionDetailsUseCase.invoke(championName)
             if (championDetails != null) {
                 reduce { state.copy(champion = championDetails) }
-                reduce { state.copy(generalStats = getGeneralStats(championDetails)) }
+                getGeneralStats(championDetails)
+                getAllSkin(championDetails)
+                delay(500)
+                reduce { state.copy(isOnLoading = false) }
             }
         }
     }
 
-    private fun getGeneralStats(champion: ChampionModel) : List<String> {
+    private fun getAllSkin(champion: ChampionModel) = intent {
+        val skinList: ArrayList<Pair<String, Int>> = arrayListOf()
+        val skinFiltered = champion.skins.filter { it.skinName != "default" }
+        for (skin in skinFiltered) {
+            val skinPair = (skin.skinName ?: "") to (skin.skinNumber ?: -1)
+            skinList.add(skinPair)
+            reduce { state.copy(skins = skinList) }
+        }
+    }
+
+    private fun getGeneralStats(champion: ChampionModel) = intent {
         val health = parseStatToString(champion.stats?.hp ?: 0, champion.stats?.hpPerLevel ?: 0)
         val healthRegen = parseStatToString(champion.stats?.hpRegen ?: 0.0, champion.stats?.hpRegenPerLevel ?: 0.0)
         val manaStat = parseStatToString(champion.stats?.mp ?: 0, champion.stats?.mpPerLevel ?: 0.0)
@@ -38,7 +52,7 @@ class ChampionDetailsViewModel(
         val magicResist = parseStatToString(champion.stats?.spellBlock ?: 0, champion.stats?.spellBlockPerLevel ?: 0.0)
         val movementSpeed = champion.stats?.moveSpeed.toString()
         val generalStats = listOf(health, healthRegen, manaStat, manaRegen, rage, attackDamage, attackSpeed, armor, magicResist, movementSpeed)
-        return generalStats
+        reduce { state.copy(generalStats =generalStats) }
     }
 
     private fun parseStatToString(initialValue: Int, perLevelValue: Int) : String {

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -33,6 +34,7 @@ import com.leomarkpaway.riotgg.data.remote.RiotApiService.Companion.CHAMPION_BAC
 import com.leomarkpaway.riotgg.data.remote.RiotApiService.Companion.CHAMPION_SQUARE_URL
 import com.leomarkpaway.riotgg.presentation.champion_details.section_tabs.AbilitiesContent
 import com.leomarkpaway.riotgg.presentation.champion_details.section_tabs.GeneralContent
+import com.leomarkpaway.riotgg.presentation.champion_details.section_tabs.SkinsContent
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import java.util.Locale
@@ -42,9 +44,16 @@ fun ChampionDetailsScreen(championName: String) {
     val viewModel = koinViewModel<ChampionDetailsViewModel>()
     viewModel.fetchChampionDetails(championName)
     val state = viewModel.collectAsState()
-    Column(modifier = Modifier.fillMaxSize()) {
-        Header(state.value)
-        SectionTabs(state.value)
+    if (state.value.isOnLoading) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) { CircularProgressIndicator(modifier = Modifier.padding(24.dp), color = Color.Black) }
+    } else {
+        Column(modifier = Modifier.fillMaxSize()) {
+            Header(state.value)
+            SectionTabs(state.value)
+        }
     }
 }
 
@@ -143,18 +152,7 @@ fun SectionTabs(state: ChampionDetailsState) {
         when (selectedTabIndex) {
             0 -> GeneralContent(state)
             1 -> AbilitiesContent(state)
-            2 -> TabContent("Skins Tab")
+            2 -> SkinsContent(state)
         }
-    }
-}
-
-@Composable
-fun TabContent(text: String) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        Text(text = text, style = MaterialTheme.typography.bodySmall)
     }
 }
