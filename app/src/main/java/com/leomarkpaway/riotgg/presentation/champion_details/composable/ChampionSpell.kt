@@ -11,10 +11,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.leomarkpaway.riotgg.data.remote.RiotApiService.Companion.CHAMPION_ABILITY_URL
-import com.leomarkpaway.riotgg.domain.entity.model.SpellModel
+import com.leomarkpaway.riotgg.domain.entity.model.AbilityModel
 
 @Composable
-fun ChampionSpell(spell: SpellModel, modifier: Modifier = Modifier) {
+fun ChampionSpell(spell: AbilityModel, modifier: Modifier = Modifier) {
     ListItem(
         headlineContent = {
             Text(text = spell.name ?: "")

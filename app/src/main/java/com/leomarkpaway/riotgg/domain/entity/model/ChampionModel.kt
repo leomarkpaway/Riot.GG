@@ -20,7 +20,7 @@ data class ChampionModel(
     @SerialName("passive")
     val passive: PassiveModel? = PassiveModel(),
     @SerialName("spells")
-    val spells: List<SpellModel> = listOf(),
+    val spells: List<AbilityModel> = listOf(),
     @SerialName("tags")
     val tags: List<String> = listOf(),
     @SerialName("title")
@@ -29,6 +29,8 @@ data class ChampionModel(
     var info: InfoModel? = InfoModel(),
     @SerialName("stats")
     var stats: Stats? = Stats(),
+    @SerialName("skins")
+    val skins: ArrayList<SkinModel> = arrayListOf(),
     @SerialName("allytips")
     var allyTips: ArrayList<String> = arrayListOf(),
     @SerialName("enemytips")

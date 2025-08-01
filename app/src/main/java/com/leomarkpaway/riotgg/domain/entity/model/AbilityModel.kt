@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SpellModel(
+data class AbilityModel(
     @SerialName("description")
     val description: String? = "",
     @SerialName("id")
