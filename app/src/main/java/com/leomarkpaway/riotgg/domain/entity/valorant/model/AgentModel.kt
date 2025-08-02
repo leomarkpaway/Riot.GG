@@ -10,27 +10,27 @@ data class AgentModel(
     @SerialName("assetPath")
     val assetPath: String = "",
     @SerialName("background")
-    val background: String = "",
+    val background: String? = null,
     @SerialName("backgroundGradientColors")
     val backgroundGradientColors: List<String> = emptyList(),
     @SerialName("bustPortrait")
-    val bustPortrait: String = "",
+    val bustPortrait: String? = null,
     @SerialName("characterTags")
-    val characterTags: String = "",
+    val characterTags: List<String>? = null,
     @SerialName("description")
     val description: String = "",
     @SerialName("developerName")
     val developerName: String = "",
     @SerialName("displayIcon")
-    val displayIcon: String = "",
+    val displayIcon: String? = null,
     @SerialName("displayIconSmall")
     val displayIconSmall: String = "",
     @SerialName("displayName")
     val displayName: String = "",
     @SerialName("fullPortrait")
-    val fullPortrait: String = "",
+    val fullPortrait: String? = null,
     @SerialName("fullPortraitV2")
-    val fullPortraitV2: String = "",
+    val fullPortraitV2: String? = null,
     @SerialName("isAvailableForTest")
     val isAvailableForTest: Boolean = false,
     @SerialName("isBaseContent")
@@ -40,15 +40,15 @@ data class AgentModel(
     @SerialName("isPlayableCharacter")
     val isPlayableCharacter: Boolean = false,
     @SerialName("killfeedPortrait")
-    val killFeedPortrait: String = "",
+    val killFeedPortrait: String? = null,
     @SerialName("recruitmentData")
-    val recruitmentData: String = "",
+    val recruitmentData: RecruitmentDataModel? = null,
     @SerialName("releaseDate")
     val releaseDate: String = "",
     @SerialName("role")
-    val role: RoleModel = RoleModel(),
+    val role: RoleModel? = null,
     @SerialName("uuid")
     val uuid: String = "",
     @SerialName("voiceLine")
-    val voiceLine: String = ""
+    val voiceLine: String? = null
 )
