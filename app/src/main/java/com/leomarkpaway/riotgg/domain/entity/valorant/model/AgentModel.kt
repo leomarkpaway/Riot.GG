@@ -6,49 +6,49 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AgentModel(
     @SerialName("abilities")
-    val abilities: List<AbilityModel>,
+    val abilities: List<AbilityModel> = emptyList(),
     @SerialName("assetPath")
-    val assetPath: String,
+    val assetPath: String = "",
     @SerialName("background")
-    val background: String,
+    val background: String = "",
     @SerialName("backgroundGradientColors")
-    val backgroundGradientColors: List<String>,
+    val backgroundGradientColors: List<String> = emptyList(),
     @SerialName("bustPortrait")
-    val bustPortrait: String,
+    val bustPortrait: String = "",
     @SerialName("characterTags")
-    val characterTags: String,
+    val characterTags: String = "",
     @SerialName("description")
-    val description: String,
+    val description: String = "",
     @SerialName("developerName")
-    val developerName: String,
+    val developerName: String = "",
     @SerialName("displayIcon")
-    val displayIcon: String,
+    val displayIcon: String = "",
     @SerialName("displayIconSmall")
-    val displayIconSmall: String,
+    val displayIconSmall: String = "",
     @SerialName("displayName")
-    val displayName: String,
+    val displayName: String = "",
     @SerialName("fullPortrait")
-    val fullPortrait: String,
+    val fullPortrait: String = "",
     @SerialName("fullPortraitV2")
-    val fullPortraitV2: String,
+    val fullPortraitV2: String = "",
     @SerialName("isAvailableForTest")
-    val isAvailableForTest: Boolean,
+    val isAvailableForTest: Boolean = false,
     @SerialName("isBaseContent")
-    val isBaseContent: Boolean,
+    val isBaseContent: Boolean = false,
     @SerialName("isFullPortraitRightFacing")
-    val isFullPortraitRightFacing: Boolean,
+    val isFullPortraitRightFacing: Boolean = false,
     @SerialName("isPlayableCharacter")
-    val isPlayableCharacter: Boolean,
+    val isPlayableCharacter: Boolean = false,
     @SerialName("killfeedPortrait")
-    val killFeedPortrait: String,
+    val killFeedPortrait: String = "",
     @SerialName("recruitmentData")
-    val recruitmentData: String,
+    val recruitmentData: String = "",
     @SerialName("releaseDate")
-    val releaseDate: String,
+    val releaseDate: String = "",
     @SerialName("role")
-    val role: RoleModel,
+    val role: RoleModel = RoleModel(),
     @SerialName("uuid")
-    val uuid: String,
+    val uuid: String = "",
     @SerialName("voiceLine")
-    val voiceLine: String
+    val voiceLine: String = ""
 )

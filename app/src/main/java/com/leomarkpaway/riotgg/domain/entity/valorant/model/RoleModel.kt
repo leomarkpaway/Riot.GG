@@ -7,13 +7,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RoleModel(
     @SerialName("assetPath")
-    val assetPath: String,
+    val assetPath: String = "",
     @SerialName("description")
-    val description: String,
+    val description: String = "",
     @SerialName("displayIcon")
-    val displayIcon: String,
+    val displayIcon: String = "",
     @SerialName("displayName")
-    val displayName: String,
+    val displayName: String = "",
     @SerialName("uuid")
-    val uuid: String
+    val uuid: String = ""
 )
