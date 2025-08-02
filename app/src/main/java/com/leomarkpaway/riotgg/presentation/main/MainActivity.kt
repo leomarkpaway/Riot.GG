@@ -14,11 +14,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.leomarkpaway.riotgg.presentation.champion_details.ChampionDetailsScreen
-import com.leomarkpaway.riotgg.presentation.champion_details.ChampionDetailsViewModel
-import com.leomarkpaway.riotgg.presentation.champion_list.ChampionListScreen
-import com.leomarkpaway.riotgg.presentation.champion_list.ChampionListSideEffect
-import com.leomarkpaway.riotgg.presentation.champion_list.ChampionListViewModel
+import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_details.ChampionDetailsScreen
+import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_details.ChampionDetailsViewModel
+import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_list.ChampionListScreen
+import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_list.ChampionListSideEffect
+import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_list.ChampionListViewModel
 import com.leomarkpaway.riotgg.common.util.navigator.Destination
 import com.leomarkpaway.riotgg.common.util.navigator.NavigationAction
 import com.leomarkpaway.riotgg.common.util.navigator.Navigator

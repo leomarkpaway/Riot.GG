@@ -1,24 +1,22 @@
 package com.leomarkpaway.riotgg.di
 
-
-import com.leomarkpaway.riotgg.data.remote.RiotApiService
-import com.leomarkpaway.riotgg.data.remote.RiotApiService.Companion.BASE_URL
-import com.leomarkpaway.riotgg.data.repository.RepositoryImpl
-import com.leomarkpaway.riotgg.domain.repository.Repository
-import com.leomarkpaway.riotgg.domain.usecase.FetchChampionDetailsUseCase
-import com.leomarkpaway.riotgg.domain.usecase.FetchChampionListUsaCase
-import com.leomarkpaway.riotgg.presentation.champion_details.ChampionDetailsViewModel
-import com.leomarkpaway.riotgg.presentation.champion_list.ChampionListViewModel
+import com.leomarkpaway.riotgg.data.remote.LeagueOfLegendsApiService
+import com.leomarkpaway.riotgg.data.remote.LeagueOfLegendsApiService.Companion.BASE_URL
+import com.leomarkpaway.riotgg.data.repository.LeagueOfLegendsRepositoryImpl
+import com.leomarkpaway.riotgg.domain.repository.LeagueOfLegendsRepository
+import com.leomarkpaway.riotgg.domain.usecase.league_of_legends.FetchChampionDetailsUseCase
+import com.leomarkpaway.riotgg.domain.usecase.league_of_legends.FetchChampionListUsaCase
+import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_details.ChampionDetailsViewModel
+import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_list.ChampionListViewModel
 import com.leomarkpaway.riotgg.common.util.navigator.DefaultNavigator
 import com.leomarkpaway.riotgg.common.util.navigator.Destination
 import com.leomarkpaway.riotgg.common.util.navigator.Navigator
-import com.leomarkpaway.riotgg.domain.usecase.FilterChampionListUseCase
+import com.leomarkpaway.riotgg.domain.usecase.league_of_legends.FilterChampionListUseCase
 import com.leomarkpaway.riotgg.presentation.main.MainViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
-import io.ktor.client.plugins.logging.DEFAULT
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
@@ -31,7 +29,11 @@ import org.koin.dsl.module
 import timber.log.Timber
 
 val appModule = module {
-    // Network
+    // Navigator
+    single<Navigator> { DefaultNavigator(startDestination = Destination.LeagueOfLegends) }
+    // Main ViewModel
+    viewModel<MainViewModel> { MainViewModel(navigator = get()) }
+    // League of Legends Network
     single {
         HttpClient(OkHttp.create()) {
             defaultRequest {
@@ -49,27 +51,21 @@ val appModule = module {
             install(Logging) {
                 logger = object : Logger {
                     override fun log(message: String) {
-                        Timber.tag("KtorHttp").d(message)
+                        Timber.tag("League_of_Legends_Http").d(message)
                     }
                 }
                 level = LogLevel.ALL
             }
         }
     }
-
-    // Repository
-    single<RiotApiService> { RiotApiService(httpClient = get()) }
-    single<Repository> { RepositoryImpl(riotApiService = get()) }
-
-    // Navigator
-    single<Navigator> { DefaultNavigator(startDestination = Destination.LeagueOfLegends) }
-
-    // UseCase
-    factory<FetchChampionListUsaCase> { FetchChampionListUsaCase(repository = get()) }
-    factory<FetchChampionDetailsUseCase> { FetchChampionDetailsUseCase(repository = get()) }
+    // League of Legends Repositories
+    single<LeagueOfLegendsApiService> { LeagueOfLegendsApiService(httpClient = get()) }
+    single<LeagueOfLegendsRepository> { LeagueOfLegendsRepositoryImpl(leagueOfLegendsApiService = get()) }
+    // League of Legends UseCases
+    factory<FetchChampionListUsaCase> { FetchChampionListUsaCase(leagueOfLegendsRepository = get()) }
+    factory<FetchChampionDetailsUseCase> { FetchChampionDetailsUseCase(leagueOfLegendsRepository = get()) }
     factory<FilterChampionListUseCase> { FilterChampionListUseCase() }
-
-    // ViewModel
+    // League of Legends ViewModels
     viewModel<ChampionListViewModel> {
         ChampionListViewModel(
             navigator = get(),
@@ -78,9 +74,6 @@ val appModule = module {
         )
     }
     viewModel<ChampionDetailsViewModel> {
-        ChampionDetailsViewModel(
-            fetchChampionDetailsUseCase = get()
-        )
+        ChampionDetailsViewModel(fetchChampionDetailsUseCase = get())
     }
-    viewModel<MainViewModel> { MainViewModel(navigator = get()) }
 }
