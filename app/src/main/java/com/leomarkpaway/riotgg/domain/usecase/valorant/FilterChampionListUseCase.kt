@@ -4,6 +4,6 @@ import com.leomarkpaway.riotgg.domain.entity.valorant.model.AgentModel
 
 class FilterAgentListUseCase {
     suspend operator fun invoke(agentName: String, agentList: List<AgentModel>) : List<AgentModel> {
-        return agentList.filter { it.developerName.contains(agentName, ignoreCase = true) }
+        return agentList.filter { it.displayName.contains(agentName, ignoreCase = true) }
     }
 }

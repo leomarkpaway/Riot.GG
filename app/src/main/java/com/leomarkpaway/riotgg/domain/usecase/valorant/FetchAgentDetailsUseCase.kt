@@ -8,7 +8,7 @@ class FetchAgentDetailsUseCase(private val valorantRepository: ValorantRepositor
     suspend operator fun invoke(uuid: String) : AgentModel? {
         var agentDetails: AgentModel? = AgentModel()
         valorantRepository.getAgentDetails(uuid).onSuccess {
-            agentDetails = data.agents.values.firstOrNull()
+            agentDetails = data.agents.firstOrNull()
         }
         return agentDetails
     }
