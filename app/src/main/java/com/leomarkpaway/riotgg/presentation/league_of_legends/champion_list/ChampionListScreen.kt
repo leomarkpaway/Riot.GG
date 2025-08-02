@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.leomarkpaway.riotgg.common.composable.SearchBar
 import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_list.composable.ChampionCard
 
 @Composable
@@ -35,21 +36,10 @@ fun ChampionListScreen(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        OutlinedTextField(
-            value = state.searchText,
-            onValueChange = onSearchTextChange,
-            placeholder = { Text(text = "Search for champs") },
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Rounded.Search,
-                    contentDescription = null
-                )
-            },
-            shape = RoundedCornerShape(12.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 3.dp)
-                .padding(horizontal = 15.dp)
+        SearchBar(
+            searchValue = state.searchText,
+            onSearchValueChange = onSearchTextChange,
+            placeholder = "Search for champs"
         )
         if (state.isOnLoading) {
             Box(
