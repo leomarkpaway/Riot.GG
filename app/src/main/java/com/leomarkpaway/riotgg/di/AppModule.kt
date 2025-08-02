@@ -33,7 +33,7 @@ val appModule = module {
 
     // League of Legends Network
     single(named("League_of_Legends")) {
-        OkHttp.createNetwork(baseUrl = LOL_BASE_URL, loggerTag = "League_of_Legends")
+        OkHttp.createNetwork(baseUrl = LOL_BASE_URL, loggerTag = "LOL")
     }
     // League of Legends Repository
     single<LeagueOfLegendsApiService> { LeagueOfLegendsApiService(httpClient = get(named("League_of_Legends"))) }
@@ -56,7 +56,7 @@ val appModule = module {
 
     // Valorant Network
     single(named("Valorant")) {
-        OkHttp.createNetwork(baseUrl = VAL_BASE_URL, loggerTag = "Valorant")
+        OkHttp.createNetwork(baseUrl = VAL_BASE_URL, loggerTag = "VAL")
     }
     // Valorant Repository
     single<ValorantApiService> { ValorantApiService(httpClient = get(named("Valorant"))) }
