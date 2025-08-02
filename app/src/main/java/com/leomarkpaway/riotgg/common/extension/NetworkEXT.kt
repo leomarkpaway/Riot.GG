@@ -13,8 +13,8 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import timber.log.Timber
 
-fun OkHttp.createNetwork(baseUrl: String, loggerTag: String) {
-    HttpClient(this.create()) {
+fun OkHttp.createNetwork(baseUrl: String, loggerTag: String) : HttpClient {
+    return HttpClient(this.create()) {
         defaultRequest {
             url(baseUrl)
             header(HttpHeaders.ContentType, "application/json")
