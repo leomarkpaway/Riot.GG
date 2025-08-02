@@ -17,9 +17,11 @@ import com.leomarkpaway.riotgg.domain.usecase.league_of_legends.FetchChampionLis
 import com.leomarkpaway.riotgg.domain.usecase.league_of_legends.FilterChampionListUseCase
 import com.leomarkpaway.riotgg.domain.usecase.valorant.FetchAgentDetailsUseCase
 import com.leomarkpaway.riotgg.domain.usecase.valorant.FetchAgentListUseCase
+import com.leomarkpaway.riotgg.domain.usecase.valorant.FilterAgentListUseCase
 import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_details.ChampionDetailsViewModel
 import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_list.ChampionListViewModel
 import com.leomarkpaway.riotgg.presentation.main.MainViewModel
+import com.leomarkpaway.riotgg.presentation.valorant.agent_list.AgentListViewModel
 import io.ktor.client.engine.okhttp.OkHttp
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -64,4 +66,13 @@ val appModule = module {
     // Valorant UseCases
     factory<FetchAgentListUseCase> { FetchAgentListUseCase(valorantRepository = get()) }
     factory<FetchAgentDetailsUseCase> { FetchAgentDetailsUseCase(valorantRepository = get()) }
+    factory<FilterAgentListUseCase> { FilterAgentListUseCase() }
+    // Valorant ViewModel
+    viewModel<AgentListViewModel>{
+        AgentListViewModel(
+            navigator = get(),
+            fetchAgentListUseCase = get(),
+            filterAgentListUseCase = get()
+        )
+    }
 }
