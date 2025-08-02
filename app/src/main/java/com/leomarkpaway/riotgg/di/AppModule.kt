@@ -6,16 +6,23 @@ import com.leomarkpaway.riotgg.common.util.navigator.Destination
 import com.leomarkpaway.riotgg.common.util.navigator.Navigator
 import com.leomarkpaway.riotgg.data.remote.LeagueOfLegendsApiService
 import com.leomarkpaway.riotgg.data.remote.LeagueOfLegendsApiService.Companion.LOL_BASE_URL
+import com.leomarkpaway.riotgg.data.remote.ValorantApiService
+import com.leomarkpaway.riotgg.data.remote.ValorantApiService.Companion.VAL_BASE_URL
 import com.leomarkpaway.riotgg.data.repository.LeagueOfLegendsRepositoryImpl
+import com.leomarkpaway.riotgg.data.repository.ValorantRepositoryImpl
 import com.leomarkpaway.riotgg.domain.repository.LeagueOfLegendsRepository
+import com.leomarkpaway.riotgg.domain.repository.ValorantRepository
 import com.leomarkpaway.riotgg.domain.usecase.league_of_legends.FetchChampionDetailsUseCase
 import com.leomarkpaway.riotgg.domain.usecase.league_of_legends.FetchChampionListUsaCase
 import com.leomarkpaway.riotgg.domain.usecase.league_of_legends.FilterChampionListUseCase
+import com.leomarkpaway.riotgg.domain.usecase.valorant.FetchAgentDetailsUseCase
+import com.leomarkpaway.riotgg.domain.usecase.valorant.FetchAgentListUseCase
 import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_details.ChampionDetailsViewModel
 import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_list.ChampionListViewModel
 import com.leomarkpaway.riotgg.presentation.main.MainViewModel
 import io.ktor.client.engine.okhttp.OkHttp
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val appModule = module {
@@ -23,10 +30,13 @@ val appModule = module {
     single<Navigator> { DefaultNavigator(startDestination = Destination.LeagueOfLegends) }
     // Main ViewModel
     viewModel<MainViewModel> { MainViewModel(navigator = get()) }
+
     // League of Legends Network
-    single { OkHttp.createNetwork(baseUrl = LOL_BASE_URL, loggerTag = "League_of_Legends") }
-    // League of Legends Repositories
-    single<LeagueOfLegendsApiService> { LeagueOfLegendsApiService(httpClient = get()) }
+    single(named("League_of_Legends")) {
+        OkHttp.createNetwork(baseUrl = LOL_BASE_URL, loggerTag = "League_of_Legends")
+    }
+    // League of Legends Repository
+    single<LeagueOfLegendsApiService> { LeagueOfLegendsApiService(httpClient = get(named("League_of_Legends"))) }
     single<LeagueOfLegendsRepository> { LeagueOfLegendsRepositoryImpl(leagueOfLegendsApiService = get()) }
     // League of Legends UseCases
     factory<FetchChampionListUsaCase> { FetchChampionListUsaCase(leagueOfLegendsRepository = get()) }
@@ -43,4 +53,15 @@ val appModule = module {
     viewModel<ChampionDetailsViewModel> {
         ChampionDetailsViewModel(fetchChampionDetailsUseCase = get())
     }
+
+    // Valorant Network
+    single(named("Valorant")) {
+        OkHttp.createNetwork(baseUrl = VAL_BASE_URL, loggerTag = "Valorant")
+    }
+    // Valorant Repository
+    single<ValorantApiService> { ValorantApiService(httpClient = get(named("Valorant"))) }
+    single<ValorantRepository> { ValorantRepositoryImpl(valorantApiService = get()) }
+    // Valorant UseCases
+    factory<FetchAgentListUseCase> { FetchAgentListUseCase(valorantRepository = get()) }
+    factory<FetchAgentDetailsUseCase> { FetchAgentDetailsUseCase(valorantRepository = get()) }
 }
