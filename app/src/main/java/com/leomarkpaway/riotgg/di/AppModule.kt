@@ -4,10 +4,10 @@ import com.leomarkpaway.riotgg.common.extension.createNetwork
 import com.leomarkpaway.riotgg.common.util.navigator.DefaultNavigator
 import com.leomarkpaway.riotgg.common.util.navigator.Destination
 import com.leomarkpaway.riotgg.common.util.navigator.Navigator
-import com.leomarkpaway.riotgg.data.remote.LeagueOfLegendsApiService
-import com.leomarkpaway.riotgg.data.remote.LeagueOfLegendsApiService.Companion.LOL_BASE_URL
-import com.leomarkpaway.riotgg.data.remote.ValorantApiService
-import com.leomarkpaway.riotgg.data.remote.ValorantApiService.Companion.VAL_BASE_URL
+import com.leomarkpaway.riotgg.data.remote.league_of_legends.LeagueOfLegendsApiService
+import com.leomarkpaway.riotgg.data.remote.league_of_legends.LeagueOfLegendsApiService.Companion.LOL_BASE_URL
+import com.leomarkpaway.riotgg.data.remote.valorant.ValorantApiService
+import com.leomarkpaway.riotgg.data.remote.valorant.ValorantApiService.Companion.VAL_BASE_URL
 import com.leomarkpaway.riotgg.data.repository.LeagueOfLegendsRepositoryImpl
 import com.leomarkpaway.riotgg.data.repository.ValorantRepositoryImpl
 import com.leomarkpaway.riotgg.domain.repository.LeagueOfLegendsRepository

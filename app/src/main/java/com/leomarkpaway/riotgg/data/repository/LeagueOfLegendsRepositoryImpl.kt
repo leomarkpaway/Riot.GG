@@ -1,6 +1,6 @@
 package com.leomarkpaway.riotgg.data.repository
 
-import com.leomarkpaway.riotgg.data.remote.LeagueOfLegendsApiService
+import com.leomarkpaway.riotgg.data.remote.league_of_legends.LeagueOfLegendsApiService
 import com.leomarkpaway.riotgg.domain.repository.LeagueOfLegendsRepository
 
 class LeagueOfLegendsRepositoryImpl(

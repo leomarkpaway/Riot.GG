@@ -30,8 +30,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.leomarkpaway.riotgg.data.remote.LeagueOfLegendsApiService.Companion.CHAMPION_BACKGROUND_URL
-import com.leomarkpaway.riotgg.data.remote.LeagueOfLegendsApiService.Companion.CHAMPION_SQUARE_URL
+import com.leomarkpaway.riotgg.data.remote.league_of_legends.LeagueOfLegendsApiService.Companion.CHAMPION_BACKGROUND_URL
+import com.leomarkpaway.riotgg.data.remote.league_of_legends.LeagueOfLegendsApiService.Companion.CHAMPION_SQUARE_URL
 import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_details.section_tabs.AbilitiesContent
 import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_details.section_tabs.GeneralContent
 import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_details.section_tabs.SkinsContent

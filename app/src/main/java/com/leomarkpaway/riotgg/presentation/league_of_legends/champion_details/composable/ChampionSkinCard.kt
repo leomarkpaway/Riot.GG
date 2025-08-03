@@ -23,7 +23,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.leomarkpaway.riotgg.data.remote.LeagueOfLegendsApiService.Companion.CHAMPION_IMAGE_CARD_URL
+import com.leomarkpaway.riotgg.data.remote.league_of_legends.LeagueOfLegendsApiService.Companion.CHAMPION_IMAGE_CARD_URL
 
 @Composable
 fun ChampionSkinCard(championId: String, skin: Pair<String, Int>, onClickItem: (String) -> Unit) {

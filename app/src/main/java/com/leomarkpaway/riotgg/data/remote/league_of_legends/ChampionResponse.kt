@@ -1,6 +1,6 @@
-package com.leomarkpaway.riotgg.domain.entity.league_of_legends
+package com.leomarkpaway.riotgg.data.remote.league_of_legends
 
-import com.leomarkpaway.riotgg.domain.entity.league_of_legends.model.ChampionModel
+import com.leomarkpaway.riotgg.domain.entity.league_of_legends.ChampionModel
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

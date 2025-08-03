@@ -1,17 +1,16 @@
-package com.leomarkpaway.riotgg.data.remote
+package com.leomarkpaway.riotgg.data.remote.valorant
 
-import com.leomarkpaway.riotgg.domain.entity.valorant.AgentEntity
 import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.ktor.getApiResponse
 import io.ktor.client.HttpClient
 
 class ValorantApiService(private val httpClient: HttpClient) {
 
-    suspend fun getAllAgents() : ApiResponse<AgentEntity> {
+    suspend fun getAllAgents() : ApiResponse<AgentListResponse> {
         return httpClient.getApiResponse("agents")
     }
 
-    suspend fun getAgentDetails(uuid: String) : ApiResponse<AgentEntity> {
+    suspend fun getAgentDetails(uuid: String) : ApiResponse<AgentListResponse> {
         return httpClient.getApiResponse("agents/$uuid")
     }
 

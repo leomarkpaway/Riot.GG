@@ -32,7 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.leomarkpaway.riotgg.domain.entity.league_of_legends.model.InfoModel
+import com.leomarkpaway.riotgg.domain.entity.league_of_legends.InfoModel
 import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_details.ChampionDetailsState
 
 @Composable

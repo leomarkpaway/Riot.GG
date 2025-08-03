@@ -1,9 +1,9 @@
 package com.leomarkpaway.riotgg.domain.repository
 
-import com.leomarkpaway.riotgg.domain.entity.valorant.AgentEntity
+import com.leomarkpaway.riotgg.data.remote.valorant.AgentListResponse
 import com.skydoves.sandwich.ApiResponse
 
 interface ValorantRepository {
-    suspend fun getAllAgents(): ApiResponse<AgentEntity>
-    suspend fun getAgentDetails(uuid: String): ApiResponse<AgentEntity>
+    suspend fun getAllAgents(): ApiResponse<AgentListResponse>
+    suspend fun getAgentDetails(uuid: String): ApiResponse<AgentListResponse>
 }

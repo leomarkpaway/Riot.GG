@@ -1,4 +1,4 @@
-package com.leomarkpaway.riotgg.domain.entity.league_of_legends.model
+package com.leomarkpaway.riotgg.domain.entity.league_of_legends
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

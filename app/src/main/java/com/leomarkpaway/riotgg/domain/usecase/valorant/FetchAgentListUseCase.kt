@@ -1,6 +1,6 @@
 package com.leomarkpaway.riotgg.domain.usecase.valorant
 
-import com.leomarkpaway.riotgg.domain.entity.valorant.model.AgentModel
+import com.leomarkpaway.riotgg.domain.entity.valorant.AgentModel
 import com.leomarkpaway.riotgg.domain.repository.ValorantRepository
 import com.skydoves.sandwich.onSuccess
 

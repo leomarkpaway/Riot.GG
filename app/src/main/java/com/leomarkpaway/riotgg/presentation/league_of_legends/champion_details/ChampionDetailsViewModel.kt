@@ -2,7 +2,7 @@ package com.leomarkpaway.riotgg.presentation.league_of_legends.champion_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.leomarkpaway.riotgg.domain.entity.league_of_legends.model.ChampionModel
+import com.leomarkpaway.riotgg.domain.entity.league_of_legends.ChampionModel
 import com.leomarkpaway.riotgg.domain.usecase.league_of_legends.FetchChampionDetailsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

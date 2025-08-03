@@ -1,4 +1,4 @@
-package com.leomarkpaway.riotgg.domain.entity.valorant.model
+package com.leomarkpaway.riotgg.domain.entity.valorant
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

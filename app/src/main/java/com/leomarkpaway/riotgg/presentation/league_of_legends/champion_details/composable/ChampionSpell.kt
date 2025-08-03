@@ -10,8 +10,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.leomarkpaway.riotgg.data.remote.LeagueOfLegendsApiService.Companion.CHAMPION_ABILITY_URL
-import com.leomarkpaway.riotgg.domain.entity.league_of_legends.model.AbilityModel
+import com.leomarkpaway.riotgg.data.remote.league_of_legends.LeagueOfLegendsApiService.Companion.CHAMPION_ABILITY_URL
+import com.leomarkpaway.riotgg.domain.entity.league_of_legends.AbilityModel
 
 @Composable
 fun ChampionSpell(spell: AbilityModel, modifier: Modifier = Modifier) {
