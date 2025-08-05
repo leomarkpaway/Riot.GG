@@ -28,11 +28,13 @@ import androidx.navigation.toRoute
 import com.leomarkpaway.riotgg.R
 import com.leomarkpaway.riotgg.common.util.navigator.Destination
 import com.leomarkpaway.riotgg.common.util.navigator.Navigator
-import com.leomarkpaway.riotgg.presentation.champion_details.ChampionDetailsScreen
-import com.leomarkpaway.riotgg.presentation.champion_details.ChampionDetailsViewModel
-import com.leomarkpaway.riotgg.presentation.champion_list.ChampionListScreen
-import com.leomarkpaway.riotgg.presentation.champion_list.ChampionListSideEffect
-import com.leomarkpaway.riotgg.presentation.champion_list.ChampionListViewModel
+import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_details.ChampionDetailsScreen
+import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_details.ChampionDetailsViewModel
+import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_list.ChampionListScreen
+import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_list.ChampionListSideEffect
+import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_list.ChampionListViewModel
+import com.leomarkpaway.riotgg.presentation.valorant.agent_list.AgentListScreen
+import com.leomarkpaway.riotgg.presentation.valorant.agent_list.AgentListViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
@@ -67,16 +69,19 @@ fun NavigationHost(padding: PaddingValues, navController: NavHostController, nav
             }
             composable<Destination.ChampionDetails> {
                 val args = it.toRoute<Destination.ChampionDetails>()
-                val viewModel = koinViewModel<ChampionDetailsViewModel>()
-                viewModel.fetchChampionDetails(args.championName)
-                val state = viewModel.collectAsState().value
-                ChampionDetailsScreen(state = state)
+                ChampionDetailsScreen(args.championName)
             }
             composable<Destination.TeamfightTactics> {
                 ComingSoonScreen()
             }
             composable<Destination.Valorant> {
-                ComingSoonScreen()
+                val viewModel = koinViewModel<AgentListViewModel>()
+                val state = viewModel.collectAsState()
+                AgentListScreen(
+                    state = state.value,
+                    onSearchTextChange = viewModel::onSearchTextChange,
+                    onClickItem = viewModel::onClickItem
+                )
             }
             composable<Destination.Settings> {
                 ComingSoonScreen()
