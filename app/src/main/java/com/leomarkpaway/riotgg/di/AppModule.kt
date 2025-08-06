@@ -21,6 +21,7 @@ import com.leomarkpaway.riotgg.domain.usecase.valorant.FilterAgentListUseCase
 import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_details.ChampionDetailsViewModel
 import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_list.ChampionListViewModel
 import com.leomarkpaway.riotgg.presentation.main.MainViewModel
+import com.leomarkpaway.riotgg.presentation.valorant.agent_details.AgentDetailsViewModel
 import com.leomarkpaway.riotgg.presentation.valorant.agent_list.AgentListViewModel
 import io.ktor.client.engine.okhttp.OkHttp
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -74,5 +75,8 @@ val appModule = module {
             fetchAgentListUseCase = get(),
             filterAgentListUseCase = get()
         )
+    }
+    viewModel<AgentDetailsViewModel> {
+        AgentDetailsViewModel(fetchAgentDetailsUseCase = get())
     }
 }

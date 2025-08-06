@@ -33,6 +33,7 @@ import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_details.C
 import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_list.ChampionListScreen
 import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_list.ChampionListSideEffect
 import com.leomarkpaway.riotgg.presentation.league_of_legends.champion_list.ChampionListViewModel
+import com.leomarkpaway.riotgg.presentation.valorant.agent_details.AgentDetailsScreen
 import com.leomarkpaway.riotgg.presentation.valorant.agent_list.AgentListScreen
 import com.leomarkpaway.riotgg.presentation.valorant.agent_list.AgentListViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -82,6 +83,10 @@ fun NavigationHost(padding: PaddingValues, navController: NavHostController, nav
                     onSearchTextChange = viewModel::onSearchTextChange,
                     onClickItem = viewModel::onClickItem
                 )
+            }
+            composable<Destination.AgentDetails> {
+                val args = it.toRoute<Destination.AgentDetails>()
+                AgentDetailsScreen(args.agentUuid)
             }
             composable<Destination.Settings> {
                 ComingSoonScreen()

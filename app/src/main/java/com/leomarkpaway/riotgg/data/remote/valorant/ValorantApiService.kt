@@ -9,8 +9,7 @@ class ValorantApiService(private val httpClient: HttpClient) {
     suspend fun getAllAgents() : ApiResponse<AgentListResponse> {
         return httpClient.getApiResponse("agents")
     }
-
-    suspend fun getAgentDetails(uuid: String) : ApiResponse<AgentListResponse> {
+    suspend fun getAgentDetails(uuid: String) : ApiResponse<AgentDetailsResponse> {
         return httpClient.getApiResponse("agents/$uuid")
     }
 

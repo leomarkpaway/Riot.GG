@@ -6,11 +6,11 @@ import io.ktor.client.HttpClient
 
 class LeagueOfLegendsApiService(private val httpClient: HttpClient) {
 
-    suspend fun getAllChampions(): ApiResponse<ChampionEntity> {
+    suspend fun getAllChampions(): ApiResponse<ChampionResponse> {
         return httpClient.getApiResponse("cdn/15.4.1/data/en_US/champion.json")
     }
 
-    suspend fun getChampionByName(name: String): ApiResponse<ChampionEntity> {
+    suspend fun getChampionByName(name: String): ApiResponse<ChampionResponse> {
         return httpClient.getApiResponse("cdn/15.4.1/data/en_US/champion/$name.json")
     }
 

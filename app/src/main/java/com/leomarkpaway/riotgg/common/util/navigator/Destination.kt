@@ -12,5 +12,7 @@ sealed interface Destination {
     @Serializable
     data object Valorant: Destination
     @Serializable
+    data class AgentDetails(val agentUuid: String): Destination
+    @Serializable
     data object Settings: Destination
 }

@@ -47,7 +47,14 @@ class AgentListViewModel(
     fun onClickItem(agentUuid: String) {
         Timber.d("agentUuid $agentUuid")
         viewModelScope.launch {
-            //TODO navigate to agent details screen
+            navigator.navigate(
+                destination = Destination.AgentDetails(agentUuid),
+                navOptions = {
+                    popUpTo(Destination.Valorant) {
+                        inclusive = false
+                    }
+                }
+            )
         }
     }
 
